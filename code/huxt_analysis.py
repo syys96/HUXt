@@ -67,6 +67,13 @@ def plot(model, time, save=False, tag=''):
     mymap.set_under([0, 0, 0])
     levels = np.arange(plotvmin, plotvmax + dv, dv)
     fig, ax = plt.subplots(figsize=(10, 10), subplot_kw={"projection": "polar"})
+
+    # self change of source code to plot mag
+    np.save('lon_v1.npy', lon)
+    np.save('rad_v1.npy', rad)
+    np.save('v_v1.npy', v)
+    # end of self change
+
     cnt = ax.contourf(lon, rad, v, levels=levels, cmap=mymap, extend='both')
 
     # Add on CME boundaries

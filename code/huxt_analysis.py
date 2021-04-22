@@ -386,12 +386,30 @@ def plot_3d_meridional(model3d, time, lon=np.NaN*u.deg, save=False, tag=''):
     else:
         id_lon = np.argmin(np.abs(model.lon - lon))
         lon_out = model.lon[id_lon].to(u.deg).value
+
+    # save full data of shape: (time, lat, r, lon)
+    full_v_info = np.zeros([model.time_out.size, model3d.nlat,
+                            len(model.r), model.lon.size])
+    print(full_v_info.shape)
+    for num_lat in range(0, model3d.nlat):
+        tmp_model = model3d.HUXtlat[num_lat]
+        full_v_info[:,num_lat,:,:] = tmp_model.v_grid
+    np.save('full_speed.npy', full_v_info)
+    np.save('full_lon.npy', model.lon.to(u.deg).value)
+    np.save('full_lat.npy', model3d.lat.to(u.deg).value)
+    np.save('full_r.npy', model.r.to(u.solRad).value)
+    np.save('full_time.npy', model.time_out.to(u.day).value)
+    exit(0)
+    # end of save
         
     #loop over latitudes and extract the radial profiles
     mercut=np.ones((len(model.r),model3d.nlat))
     ymax=0.0
     for n in range(0,model3d.nlat):
         model=model3d.HUXtlat[n]
+        print('shape: ', model.v_grid.shape)
+        print('lon: ', model.lon.to(u.deg))
+        exit(0)
         ymin=200; ymax=810; dv=19;
         ylab='Solar Wind Speed (km/s)'
         mercut[:,n]=model.v_grid[id_t, :, id_lon]

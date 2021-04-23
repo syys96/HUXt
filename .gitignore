@@ -26,3 +26,6 @@
 
 #ipnyb checkpoints
 /code/.ipnyb*
+
+*.mp4
+*.gif

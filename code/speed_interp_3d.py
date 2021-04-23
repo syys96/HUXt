@@ -27,7 +27,7 @@ for id_lat in range(lat.shape[0]):
             point_corr[id] = np.array([gx[id_r, id_lat, id_lon],
                                        gy[id_r, id_lat, id_lon],
                                        gz[id_r, id_lat, id_lon]])
-            v_corr[id] = v[0,id_lat,id_r,id_lon]
+            v_corr[id] = v[100,id_lat,id_r,id_lon]
             id += 1
 assert id == lat.shape[0]*r.shape[0]*lon.shape[0]
 

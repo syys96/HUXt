@@ -13,11 +13,11 @@ cr=2210
 vmap, vlats, vlongs = Hin.get_MAS_maps(cr)
 
 model3d=H.HUXt3d(cr_num=cr,v_map=vmap, v_map_lat=vlats, v_map_long=vlongs,
-                    latitude_max=90*u.deg, latitude_min=-90*u.deg,
-                    lon_start=-60.0*u.deg,lon_stop=60.0*u.deg,
-                    simtime=1.5*u.day, r_min=30*u.solRad)
+                    latitude_max=20*u.deg, latitude_min=-20*u.deg,
+                    lon_start=-180.0*u.deg,lon_stop=179.0*u.deg,
+                    simtime=28*u.day, r_min=30*u.solRad)
 
-cme = H.ConeCME(t_launch=0.5*u.day, longitude=0.0*u.deg, latitude=0.0*u.deg,
+cme = H.ConeCME(t_launch=10*u.day, longitude=0.0*u.deg, latitude=0.0*u.deg,
                 width=30*u.deg, v=1000*(u.km/u.s), thickness=5*u.solRad)
 
 #run the model
